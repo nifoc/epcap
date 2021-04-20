@@ -165,7 +165,7 @@ int main(int argc, char *argv[]) {
     case 't':
       ep->timeout = strtonum(optarg, INT32_MIN, INT32_MAX, NULL);
       if (errno)
-        exit(errno);
+        exit(199);
       break;
     case 'I':
       if (strtonum(optarg, 0, 1, NULL))

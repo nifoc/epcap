@@ -163,7 +163,13 @@ int main(int argc, char *argv[]) {
         exit(errno);
       break;
     case 't':
-      ep->timeout = strtonum(optarg, INT32_MIN, INT32_MAX, NULL);
+      const char *errstr;
+
+      ep->timeout = strtonum(optarg, INT32_MIN, INT32_MAX, &errstr);
+      
+      if (errstr != NULL)
+        errx(1, "timeout it %s:	%s", errstr, optarg);
+
       if (errno)
         exit(199);
       break;

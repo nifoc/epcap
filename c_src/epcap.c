@@ -30,6 +30,7 @@
  */
 #include <ei.h>
 #include <stdint.h>
+#include <err.h>
 
 #ifdef RESTRICT_PROCESS_capsicum
 #include <sys/procdesc.h>
@@ -168,7 +169,7 @@ int main(int argc, char *argv[]) {
       ep->timeout = strtonum(optarg, INT32_MIN, INT32_MAX, &errstr);
       
       if (errstr != NULL)
-        fprintf("timeout it %s:	%s", errstr, optarg);
+        errx(1, "timeout it %s:	%s", errstr, optarg);
 
       if (errno)
         exit(199);

@@ -162,8 +162,8 @@ int main(int argc, char *argv[]) {
       if (errno)
         exit(errno);
       break;
-    case 't':
-      char *errstr = NULL;
+    case 't': {
+      const char *errstr = NULL;
 
       ep->timeout = strtonum(optarg, INT32_MIN, INT32_MAX, &errstr);
       
@@ -172,7 +172,7 @@ int main(int argc, char *argv[]) {
 
       if (errno)
         exit(199);
-      break;
+    }  break;
     case 'I':
       if (strtonum(optarg, 0, 1, NULL))
         ep->opt |= EPCAP_OPT_IMMEDIATE;
